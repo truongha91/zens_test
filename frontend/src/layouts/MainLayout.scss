@@ -51,6 +51,10 @@
         }
     }
 
+    .ant-layout-content {
+        min-height: auto;
+    }
+
     .ant-layout-footer {
         margin-top: 3rem;
         border-top: 2px solid #ccc;
@@ -61,6 +65,10 @@
             flex-direction: column;
             width: 1200px;
             margin: 0 auto;
+
+            @media screen and (max-width: 1250px) {
+                width: 100%;
+            }
         }
     }
 }

@@ -6,6 +6,11 @@
         padding-bottom: 5rem;
         color: #ffffff;
 
+        @media screen and (max-width: 1200px) {
+            padding-right: 5rem;
+            padding-left: 5rem;
+        }
+
         h1 {
             font-size: 2.7rem;
             line-height: 1.1;
@@ -18,9 +23,14 @@
             font-weight: 500;
         }
     }
+
     .joke {
         width: 1110px;
         margin: 0 auto;
+
+        @media screen and (max-width: 1200px) {
+            width: 100%;
+        }
 
         .wrap-text {
             padding-top: 3rem;
@@ -29,6 +39,11 @@
             font-weight: 400;
             text-align: justify;
             line-height: 1.7;
+
+            @media screen and (max-width: 1200px) {
+                padding-right: 3rem;
+                padding-left: 3rem;
+            }
         }
 
         .wrap-action {
@@ -40,17 +55,46 @@
                 position: absolute;
                 content: "";
                 top: 0;
-                left: 12rem;
-                width: calc(100% - 400px);
+                left: 0;
+                right: 0;
+                width: 700px;
+                margin: 0 auto;
                 border-top: 1px solid #ccc;
+
+                @media screen and (max-width: 900px) {
+                    width: 600px;
+                }
+
+                @media screen and (max-width: 768px) {
+                    width: 500px;
+                }
+
+                @media screen and (max-width: 600px) {
+                    width: 100%;
+                }
             }
 
             .box-button-event {
                 text-align: center;
 
+                @media screen and (max-width: 465px) {
+                    padding-right: 1rem;
+                    padding-left: 1rem;
+                }
+
                 button {
                     width: 200px;
                     margin-right: 2rem;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    @media screen and (max-width: 465px) {
+                        margin-right: 0;
+                        width: 100%;
+                        margin-bottom: 2rem;
+                    }
                 }
             }
         }
