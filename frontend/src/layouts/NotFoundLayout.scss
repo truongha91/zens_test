@@ -1,0 +1,11 @@
+.block-wrap-notfound {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    @media screen and (max-width: 767px) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}

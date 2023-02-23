@@ -1,0 +1,97 @@
+html, body {
+    height: auto;
+}
+
+html.other-layout {
+    height: 100%;
+
+    body {
+        height: 100%;
+
+        #root {
+            height: 100%;
+        }
+    }
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-variant: tabular-nums;
+    font-size: 14px;
+    font-feature-settings: 'tnum';
+    line-height: 1.42857;
+    color: #333333;
+    background: #ffffff;
+}
+
+ul {
+    padding-block-start: 0;
+    padding-inline-start: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    line-height: 1.5385;
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: 30px;
+    @media screen and (max-width: 375px) {
+        font-size: 24px;
+    }
+}
+
+h2 {
+    font-size: 24px;
+    @media screen and (max-width: 375px) {
+        font-size: 20px;
+    }
+}
+
+h3 {
+    font-size: 20px;
+    @media screen and (max-width: 375px) {
+        font-size: 18px;
+    }
+}
+
+h4 {
+    font-size: 16px;
+    @media screen and (max-width: 375px) {
+        font-size: 15px;
+    }
+}
+
+a {
+    color: #333333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.btn-accept {
+    color: #ffffff !important;
+    background-color: #ed1c24 !important;
+    border-color: #ed1c24 !important;
+    min-width: 80px;
+
+    &:hover {
+        color: #ffffff !important;
+        background-color: #FF132F !important;
+        border-color: #FF132F !important;
+    }
+
+    &:active, &:focus {
+        color: #ffffff !important;
+        background-color: #B8061B !important;
+        border-color: #B8061B !important;
+    }
+}
