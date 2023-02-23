@@ -77,21 +77,44 @@ a:hover {
     text-decoration: none;
 }
 
-.btn-accept {
+.btn-like {
+    border-radius: 0 !important;
     color: #ffffff !important;
-    background-color: #ed1c24 !important;
-    border-color: #ed1c24 !important;
+    background-color: #2C7EDB;
+    border-color: #2C7EDB;
     min-width: 80px;
+    box-shadow: #1a5faf 0 1px 3px, #1a5faf 0 3px 1px;
 
     &:hover {
-        color: #ffffff !important;
-        background-color: #FF132F !important;
-        border-color: #FF132F !important;
+        color: #ffffff;
+        background-color: #1a5faf;
+        border-color: #1a5faf;
     }
 
     &:active, &:focus {
-        color: #ffffff !important;
-        background-color: #B8061B !important;
-        border-color: #B8061B !important;
+        color: #ffffff;
+        background-color: #1a5faf;
+        border-color: #1a5faf;
+    }
+}
+
+.btn-unlike {
+    border-radius: 0 !important;
+    color: #ffffff !important;
+    background-color: #29B363;
+    border-color: #29B363;
+    min-width: 80px;
+    box-shadow: #24894f 0 1px 3px, #24894f 0 3px 1px;
+
+    &:hover {
+        color: #ffffff;
+        background-color: #24894f;
+        border-color: #24894f;
+    }
+
+    &:active, &:focus {
+        color: #ffffff;
+        background-color: #24894f;
+        border-color: #24894f;
     }
 }

@@ -29,7 +29,7 @@ const MainLayout = (props) => {
                         </div>
                     </div>
                 </Header>
-                <Content style={{padding: '0 50px'}}>
+                <Content>
                     <div className="site-layout-content">
                         {props.children}
                     </div>
