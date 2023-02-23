@@ -1,12 +1,10 @@
 import React, {Fragment, useEffect, useState} from "react";
 // import {getUA} from "react-device-detect";
 import {_TokenExpired} from "./actions";
-import {useLocation} from "react-router-dom";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
 const Role = (props) => {
-    let location = useLocation();
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
