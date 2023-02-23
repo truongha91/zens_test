@@ -118,3 +118,9 @@ a:hover {
         border-color: #24894f;
     }
 }
+
+.ant-btn-default:disabled {
+    border-color: #d9d9d9 !important;
+    color: #b5b5b5 !important;
+    background-color: rgba(0, 0, 0, 0.04) !important;
+}

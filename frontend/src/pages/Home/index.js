@@ -1,7 +1,8 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState, useCallback, useRef} from "react";
 import {Button} from "antd";
 import {initializeApp} from "firebase/app";
-import {getFirestore, collection, getDocs } from "firebase/firestore";
+import Loading from "../../components/Loading";
+import {getFirestore, query, collection, getDocs} from "firebase/firestore";
 import {connect} from "react-redux";
 import "./style.scss";
 
@@ -21,16 +22,63 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const HomePage = (props) => {
+    const isRendered = useRef(false);
+    const [loading, setLoading] = useState(false);
     const [listStory, setListStory] = useState([]);
 
-    useEffect(() => {
-        getDocs(collection(db, "stories")).then(querySnapshot => {
-            querySnapshot.forEach((doc) => {
-                setListStory(doc.data());
-            });
+    const hdlListStory = useCallback((trigger = false) => {
+        if (trigger) {
+            isRendered.current = false;
+        }
+        setLoading(true);
+        const q = query(collection(db, "stories"));
+        getDocs(q).then(queryFt => {
+            if (!isRendered.current) {
+                setLoading(false);
+                let tempStoryNew = [];
+                queryFt.forEach((docFt) => {
+                    let outDt = docFt.data();
+                    if (!outDt.like.includes("jim_hls") && !outDt.dislike.includes("jim_hls")) {
+                        tempStoryNew.push(docFt.data());
+                    }
+                });
+                setListStory(tempStoryNew);
+            }
             return null;
+        }).catch(error => {
+            console.log(error);
+            if (!isRendered.current) {
+                setLoading(false);
+                console.log("HomePage - hdlListStory");
+            }
         });
+        return () => {
+            isRendered.current = true;
+        };
     }, []);
+
+    useEffect(() => {
+        if (!isRendered.current) {
+            hdlListStory();
+        }
+        return () => {
+            isRendered.current = true;
+        };
+    }, [hdlListStory]);
+
+    const yieldStory = () => {
+        if (listStory.length > 0) {
+            return <>
+                <p>
+                    {listStory[0].content}
+                </p>
+            </>
+        } else {
+            return <>
+                <p>That's all the jokes for today! Come back another day!</p>
+            </>;
+        }
+    };
 
     return (
         <Fragment>
@@ -41,23 +89,17 @@ const HomePage = (props) => {
                 </div>
                 <div className="joke">
                     <div className="wrap-text">
-                        <p>A child asked his father, "How were people born?" So his father said, "Adam and Eve made
-                            babies, then their
-                            babies became adults and made babies, and so on." The child then went to his mother, asked
-                            her the same
-                            question and she told him, "We were monkeys then we evolved to become like we are now." The
-                            child ran back
-                            to his father and said, "You lied to me!" His father replied, "No, your mom was talking
-                            about her side of the
-                            family."</p>
+                        {yieldStory()}
                     </div>
                     <div className="wrap-action">
                         <div className="box-button-event">
                             <Button className="btn-like ant-btn-lg"
+                                    disabled={!listStory.length}
                                     htmlType="button">
                                 <span>This is Funny!</span>
                             </Button>
                             <Button className="btn-unlike ant-btn-lg"
+                                    disabled={!listStory.length}
                                     htmlType="button">
                                 <span>This is not funny!</span>
                             </Button>
@@ -65,6 +107,7 @@ const HomePage = (props) => {
                     </div>
                 </div>
             </div>
+            <Loading open={loading}/>
         </Fragment>
     );
 };
