@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState, useCallback, useRef} from "react";
-import {Button, Modal} from "antd";
+import {Button, Modal, Skeleton} from "antd";
 import {initializeApp} from "firebase/app";
 import Loading from "../../components/Loading";
 import {getFirestore, query, collection, doc, getDocs, updateDoc} from "firebase/firestore";
@@ -76,6 +76,7 @@ const HomePage = (props) => {
         await updateDoc(updateStory, {
             "like": tempLike
         }).then(() => {
+            document.cookie = `${data.key}_${data.code}=like`;
             setLoading(false);
             hdlListStory();
         }).catch(error => {
@@ -98,6 +99,7 @@ const HomePage = (props) => {
         await updateDoc(updateStory, {
             "dislike": tempLike
         }).then(() => {
+            document.cookie = `${data.key}_${data.code}=dislike`;
             setLoading(false);
             hdlListStory();
         }).catch(error => {
@@ -113,7 +115,11 @@ const HomePage = (props) => {
     };
 
     const yieldStory = () => {
+        if (loading) {
+            return <div className="wrap-text"><Skeleton active /></div>
+        }
         if (listStory.length > 0) {
+            document.cookie = `${listStory[0].key}_${listStory[0].code}=not_voted_yet`;
             return <>
                 <div className="wrap-text">
                     <p>
