@@ -76,7 +76,7 @@ const HomePage = (props) => {
         await updateDoc(updateStory, {
             "like": tempLike
         }).then(() => {
-            document.cookie = `${data.key}_${data.code}=like`;
+            document.cookie = `${data.key}_jim_hls_${data.code}=like`;
             setLoading(false);
             hdlListStory();
         }).catch(error => {
@@ -99,7 +99,7 @@ const HomePage = (props) => {
         await updateDoc(updateStory, {
             "dislike": tempLike
         }).then(() => {
-            document.cookie = `${data.key}_${data.code}=dislike`;
+            document.cookie = `${data.key}_jim_hls_${data.code}=dislike`;
             setLoading(false);
             hdlListStory();
         }).catch(error => {
@@ -119,7 +119,7 @@ const HomePage = (props) => {
             return <div className="wrap-text"><Skeleton active /></div>
         }
         if (listStory.length > 0) {
-            document.cookie = `${listStory[0].key}_${listStory[0].code}=not_voted_yet`;
+            document.cookie = `${listStory[0].key}_jim_hls_${listStory[0].code}=not_voted_yet`;
             return <>
                 <div className="wrap-text">
                     <p>
@@ -136,7 +136,7 @@ const HomePage = (props) => {
                         <Button className="btn-unlike ant-btn-lg"
                                 onClick={onPressNotFunny.bind(this, listStory[0])}
                                 htmlType="button">
-                            <span>This is not funny!</span>
+                            <span>This is not funny.</span>
                         </Button>
                     </div>
                 </div>
